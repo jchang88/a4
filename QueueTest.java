@@ -17,24 +17,34 @@ import java.util.ArrayList;
 
 public class QueueTest {
 
+    // Initialize max priority queue heap
+    MaxPQHeap<Integer> mpQueue;
+ 
+    // Create new max priority queue heap for each test
     @Before
     public void setUp() {
-        MaxPQHeap<Integer> mpQueue = MaxPQHeap<Integer>();
+        mpQueue = new MaxPQHeap<Integer>();
     }
 
+    // Test size after inserting values and clearing
     @Test
     public void testSize() {
         assertEquals(0, mpQueue.size());
         mpQueue.insert(1);
+        assertEquals(1, mpQueue.size());
         mpQueue.insert(69);
+        assertEquals(2, mpQueue.size());
         mpQueue.insert(42);
+        assertEquals(3, mpQueue.size());
         mpQueue.insert(7);
+        assertEquals(4, mpQueue.size());
         mpQueue.insert(69);
         assertEquals(5, mpQueue.size());
         mpQueue.clear();
         assertEquals(0, mpQueue.size());
     }
 
+    // Test if isEmpty returns correct boolean
     @Test
     public void testEmpty() {
         assertTrue(mpQueue.isEmpty());
@@ -52,6 +62,14 @@ public class QueueTest {
         assertTrue(mpQueue.isEmpty());
     }
 
+    // Test clear on an empty heap
+    @Test
+    public void testClearEmptyHeap() {
+        mpQueue.clear();
+        assertTrue(mpQueue.isEmpty());
+    }
+
+    // Test getMax and removeMax
     @Test
     public void testMax() {
         mpQueue.insert(1);
@@ -68,16 +86,19 @@ public class QueueTest {
         mpQueue.clear();
     }
 
+    // Test getMax on an empty heap
     @Test (expected = QueueEmptyException.class)
     public void testEmptyGetMax() {
         mpQueue.getMax();
     }
 
+    // Test removeMax on empty heap
     @Test (expected = QueueEmptyException.class)
     public void testEmptyRemMax() {
         mpQueue.removeMax();
     }
 
+    // Test insert and check size after each insert
     @Test
     public void testInsert() {
         for (int i = 1; i <= 50; i++) {
@@ -86,6 +107,7 @@ public class QueueTest {
         }
     }
 
+    // Test init with an array list from 1 to 50
     @Test
     public void testInit() {
         ArrayList<Integer> list = new ArrayList<Integer>();
@@ -96,5 +118,15 @@ public class QueueTest {
         assertEquals(50, mpQueue.size());
         assertEquals(50, mpQueue.getMax());
     }
+
+    // Test init with an empty array list
+    @Test
+    public void testInitEmpty() {
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        mpQueue.init(list);
+        assertTrue(mpQueue.isEmpty());
+        assertEquals(0, mpQueue.size());
+    }
+
 
 }
