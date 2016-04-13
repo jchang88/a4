@@ -29,44 +29,44 @@ public class MaxPriorityQueueTest {
     // Test size after inserting values and clearing
     @Test
     public void testSize() {
-        assertEquals(0, mpQueue.size());
+        assertEquals("list is not empty", 0, mpQueue.size());
         mpQueue.insert(1);
-        assertEquals(1, mpQueue.size());
+        assertEquals("size did not increment", 1, mpQueue.size());
         mpQueue.insert(69);
-        assertEquals(2, mpQueue.size());
+        assertEquals("size did not increment", 2, mpQueue.size());
         mpQueue.insert(42);
-        assertEquals(3, mpQueue.size());
+        assertEquals("size did not increment", 3, mpQueue.size());
         mpQueue.insert(7);
-        assertEquals(4, mpQueue.size());
+        assertEquals("size did not increment", 4, mpQueue.size());
         mpQueue.insert(69);
-        assertEquals(5, mpQueue.size());
+        assertEquals("size did not increment", 5, mpQueue.size());
         mpQueue.clear();
-        assertEquals(0, mpQueue.size());
+        assertEquals("size did not increment", 0, mpQueue.size());
     }
 
     // Test if isEmpty returns correct boolean
     @Test
     public void testEmpty() {
-        assertTrue(mpQueue.isEmpty());
+        assertTrue("heap is not empty", mpQueue.isEmpty());
         mpQueue.insert(1);
-        assertFalse(mpQueue.isEmpty());
+        assertFalse("heap is empty", mpQueue.isEmpty());
         mpQueue.insert(69);
-        assertFalse(mpQueue.isEmpty());
+        assertFalse("heap is empty", mpQueue.isEmpty());
         mpQueue.insert(42);
-        assertFalse(mpQueue.isEmpty());
+        assertFalse("heap is empty", mpQueue.isEmpty());
         mpQueue.insert(7);
-        assertFalse(mpQueue.isEmpty());
+        assertFalse("heap is empty", mpQueue.isEmpty());
         mpQueue.insert(69);
-        assertFalse(mpQueue.isEmpty());
+        assertFalse("heap is empty", mpQueue.isEmpty());
         mpQueue.clear();
-        assertTrue(mpQueue.isEmpty());
+        assertTrue("heap is not empty", mpQueue.isEmpty());
     }
 
     // Test clear on an empty heap
     @Test
     public void testClearEmptyHeap() {
         mpQueue.clear();
-        assertTrue(mpQueue.isEmpty());
+        assertTrue("heap is not empty", mpQueue.isEmpty());
     }
 
     // Test getMax and removeMax
@@ -77,12 +77,12 @@ public class MaxPriorityQueueTest {
         mpQueue.insert(42);
         mpQueue.insert(7);
         mpQueue.insert(69);
-        assertEquals(69, mpQueue.getMax());
-        assertEquals(mpQueue.getMax(), mpQueue.removeMax());
-        assertEquals(69, mpQueue.removeMax());
-        assertEquals(42, mpQueue.getMax());
+        assertEquals("got wrong max value", 69, mpQueue.getMax());
+        assertEquals("got wrong max value", mpQueue.getMax(), mpQueue.removeMax());
+        assertEquals("got wrong max value", 69, mpQueue.removeMax());
+        assertEquals("got wrong max value", 42, mpQueue.getMax());
         mpQueue.insert(100);
-        assertEquals(100, mpQueue.getMax());
+        assertEquals("got wrong max value", 100, mpQueue.getMax());
         mpQueue.clear();
     }
 
@@ -94,7 +94,7 @@ public class MaxPriorityQueueTest {
         }
         for (int i = 1; i <= 5; i++) {
             mpQueue.removeMax();
-            assertEquals((5 - i), mpQueue.size());
+            assertEquals("removed wrong max value", (5 - i), mpQueue.size());
         }
         assertTrue(mpQueue.isEmpty());
     }
@@ -116,7 +116,8 @@ public class MaxPriorityQueueTest {
     public void testInsert() {
         for (int i = 1; i <= 50; i++) {
             mpQueue.insert(i);
-            assertEquals(i, mpQueue.size());
+            assertEquals("size did not increment", i, mpQueue.size());
+            assertEquals("wrong value inserted", i, mpQueue.getMax());
         }
     }
 
@@ -128,8 +129,8 @@ public class MaxPriorityQueueTest {
             list.add(i);
         }
         mpQueue.init(list);
-        assertEquals(50, mpQueue.size());
-        assertEquals(50, mpQueue.getMax());
+        assertEquals("initialized heap size is wrong", 50, mpQueue.size());
+        assertEquals("initialized heap max value is wrong", 50, mpQueue.getMax());
     }
 
     // Test init with an empty array list
@@ -137,8 +138,8 @@ public class MaxPriorityQueueTest {
     public void testInitEmpty() {
         ArrayList<Integer> list = new ArrayList<Integer>();
         mpQueue.init(list);
-        assertTrue(mpQueue.isEmpty());
-        assertEquals(0, mpQueue.size());
+        assertTrue("initialized list is not empty", mpQueue.isEmpty());
+        assertEquals("initialized list size is not 0", 0, mpQueue.size());
     }
 
 }

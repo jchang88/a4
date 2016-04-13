@@ -15,7 +15,7 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
 import java.util.ArrayList;
 
-public class QueueTest {
+public class MaxPriorityQueueTest {
 
     // Initialize max priority queue heap
     MaxPQHeap<Integer> mpQueue;
@@ -86,6 +86,19 @@ public class QueueTest {
         mpQueue.clear();
     }
 
+    // Test removeMax
+    @Test
+    public void testRemoveAll() {
+        for (int i = 1; i <= 5; i++) {
+            mpQueue.insert(i);
+        }
+        for (int i = 1; i <= 5; i++) {
+            mpQueue.removeMax();
+            assertEquals((5 - i), mpQueue.size());
+        }
+        assertTrue(mpQueue.isEmpty());
+    }
+
     // Test getMax on an empty heap
     @Test (expected = QueueEmptyException.class)
     public void testEmptyGetMax() {
@@ -127,6 +140,5 @@ public class QueueTest {
         assertTrue(mpQueue.isEmpty());
         assertEquals(0, mpQueue.size());
     }
-
 
 }
