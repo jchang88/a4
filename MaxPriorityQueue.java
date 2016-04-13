@@ -1,6 +1,5 @@
 /**
- * Jeffrey Chang jchang88
- * Allan Wang awang53
+ * @author Jeffrey Chang jchang88, Allan Wang awang53
  * 600.226.02
  * Assignment a4
  */
