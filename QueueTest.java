@@ -13,12 +13,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertNotNull;
+import java.util.ArrayList;
 
 public class QueueTest {
 
     @Before
     public void setUp() {
-        MaxPriorityQueue<Integer> mpQueue = MaxPriorityQueue<Integer>();
+        MaxPQHeap<Integer> mpQueue = MaxPQHeap<Integer>();
     }
 
     @Test
